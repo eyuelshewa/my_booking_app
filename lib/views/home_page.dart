@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_booking_app/routes.dart';
 import 'package:my_booking_app/widgets/carousel_slider.dart';
 import 'package:my_booking_app/widgets/salon_list_item.dart';
 
@@ -83,6 +84,13 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, AppRoutes.bookings);
+        },
+        backgroundColor: Colors.orange[800],
+        child: const Icon(Icons.calendar_today, color: Colors.white),
       ),
     );
   }

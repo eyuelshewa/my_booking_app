@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_booking_app/routes.dart'; // Import AppRoutes
 import 'package:my_booking_app/views/bookings_page.dart';
 import 'package:my_booking_app/views/home_page.dart';
 import 'package:my_booking_app/views/profile_page.dart';
@@ -31,10 +32,10 @@ class _MainScreenState extends State<MainScreen> {
             _selectedIndex = index;
           });
         },
-        children: const [
-          HomePage(),
-          BookingsPage(),
-          ProfilePage(),
+        children: [
+          const HomePage(),
+          BookingsPage(places: AppRoutes.salonNames), // Pass salonNames
+          const ProfilePage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

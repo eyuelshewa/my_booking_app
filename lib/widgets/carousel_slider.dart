@@ -18,11 +18,12 @@ class _CarouselSliderState extends State<CarouselSlider> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 200,
+    return SizedBox(
+      height: 180,
       child: PageView(
         controller: _pageController,
         padEnds: false,
+
         children: [
           CarouselItem(
             imagePath: 'assets/images/logo_1.png',
@@ -36,6 +37,22 @@ class _CarouselSliderState extends State<CarouselSlider> {
             imagePath: 'assets/images/logo_3.png',
             name: 'Serenity Spa & Salon',
           ),
+          CarouselItem(
+            imagePath: 'assets/images/logo_4.png',
+            name: 'Serenity Spa & Salon',
+          ),
+          CarouselItem(
+            imagePath: 'assets/images/logo_5.png',
+            name: 'Serenity Spa & Salon',
+          ),
+          CarouselItem(
+            imagePath: 'assets/images/logo_6.png',
+            name: 'Serenity Spa & Salon',
+          ),
+          CarouselItem(
+            imagePath: 'assets/images/logo_7.png',
+            name: 'Serenity Spa & Salon',
+          ),
         ],
       ),
     );
@@ -46,16 +63,13 @@ class CarouselItem extends StatelessWidget {
   final String imagePath;
   final String name;
 
-  const CarouselItem({
-    Key? key,
-    required this.imagePath,
-    required this.name,
-  }) : super(key: key);
+  const CarouselItem({Key? key, required this.imagePath, required this.name})
+    : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
+      width: 50,
       margin: EdgeInsets.symmetric(horizontal: 8),
       child: Column(
         children: [
