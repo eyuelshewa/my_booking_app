@@ -1,5 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:my_booking_app/routes.dart';
+import 'package:my_booking_app/services/auth_service.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -9,8 +10,19 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final AuthService _authService = AuthService();
   String _userName = 'John Doe';
   String _userEmail = 'john.doe@example.com';
+
+  @override
+  void initState() {
+    super.initState();
+    final User? user = _authService.getCurrentUser();
+    if (user != null) {
+      _userName = user.displayName ?? 'No Name';
+      _userEmail = user.email ?? 'No Email';
+    }
+  }
 
   void _editProfile() {
     // Placeholder for navigating to an edit profile screen
@@ -33,12 +45,8 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  void _logout() {
-    Navigator.pushNamedAndRemoveUntil(
-      context,
-      AppRoutes.login,
-      (route) => false,
-    );
+  void _logout() async {
+    await _authService.signOut();
   }
 
   @override
@@ -96,7 +104,11 @@ class _ProfilePageState extends State<ProfilePage> {
               child: CircleAvatar(
                 radius: 18,
                 backgroundColor: Colors.white,
-                child: Icon(Icons.camera_alt, size: 20, color: Colors.grey[700]),
+                child: Icon(
+                  Icons.camera_alt,
+                  size: 20,
+                  color: Colors.grey[700],
+                ),
               ),
             ),
           ),
@@ -206,12 +218,18 @@ class _ProfilePageState extends State<ProfilePage> {
         icon: const Icon(Icons.logout, color: Colors.white),
         label: const Text(
           'Logout',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.redAccent,
           padding: const EdgeInsets.symmetric(vertical: 15),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
           elevation: 5,
         ),
       ),

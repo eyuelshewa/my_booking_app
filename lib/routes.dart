@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:my_booking_app/views/bookings_page.dart';
 import 'package:my_booking_app/views/login_page.dart';
 import 'package:my_booking_app/views/details_page.dart';
-import 'package:my_booking_app/views/main_screen.dart';
+import 'package:my_booking_app/views/home_page.dart';
+import 'package:my_booking_app/views/signup_page.dart';
+import 'package:my_booking_app/views/verify_email_page.dart';
 
 class AppRoutes {
   static const String login = '/';
   static const String home = '/home';
   static const String bookings = '/bookings';
   static const String details = '/details';
+  static const String verifyEmail = '/verify-email';
+  static const String signup = '/signup';
 
   static const List<String> salonNames = [
     'Glamour Hair & Beauty',
@@ -20,8 +24,10 @@ class AppRoutes {
 
   static final Map<String, WidgetBuilder> routes = {
     login: (context) => const LoginPage(),
-    home: (context) => const MainScreen(),
+    home: (context) => const HomePage(),
     bookings: (context) => const BookingsPage(places: salonNames),
     details: (context) => const DetailsPage(),
+    verifyEmail: (context) => const VerifyEmailPage(),
+    signup: (context) => const SignUpPage(),
   };
 }
